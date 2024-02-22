@@ -13,27 +13,20 @@ Feature: User Interface: The system shall provide the option to allow blank valu
         When I click on the button labeled "Move project to production"
         And I click on the radio labeled "Keep ALL data saved so far" in the dialog box
         And I click on the button labeled "YES, Move to Production Status" in the dialog box to request a change in project status
-        And I click on the button labeled "Ok" in the pop-up box
-        Then I should see "Project Status: Production"
+        #M: Will have to accept confirmation window "And I click on the button labeled "Ok" in the pop-up box"
+        Then I see Project status: "Production"
 
         #FUNCTIONAL REQUIREMENT
         ##ACTION: Error during import
         When I click on the link labeled "Data Import Tool"
-        And I click on the tab labeled "CVS import"
-        Then I should see the button labeled "Choose File"
+        And I upload a "csv" format file located at "import_files//B3161200100_INACCURATE.csv", by clicking the button near "Upload your CSV file:" to browse for the file, and clicking the button labeled "Upload File" to upload the file
 
-        When I click on the button labeled "Choose File"
-        And I select the file labeled "B3161200100_INACCURATE"
-        And I click on the button labeled "Upload File"
         ##VERIFY
         Then I should see "ERROR:"
-        And I click on the link labeled "RETURN TO PREVIOUS PAGE"
 
         #FUNCTIONAL REQUIREMENT
         ##ACTION: w DAGs
-        When I click on the button labeled "Choose File"
-        And I select the file labeled "B3161200100_ACCURATE"
-        And I click on the button labeled "Upload File"
+        When I upload a "csv" format file located at "import_files//B3161200100_ACCURATE.csv", by clicking the button near "Upload your CSV file:" to browse for the file, and clicking the button labeled "Upload File" to upload the file
 
         ##VERIFY
         Then I should see "Your document was uploaded successfully"
